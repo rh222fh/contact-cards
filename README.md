@@ -1,1 +1,2 @@
-Displays a list of mock contacts
+# contact-cards
+## Displays a list of mock contacts
