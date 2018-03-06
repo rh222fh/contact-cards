@@ -2,8 +2,8 @@ import React from 'react';
 import Contact from './Contact';
 
 const Contacts = ({ contactNames }) => {
-	const contacts = contactNames.map(name => {
-		return <Contact name={name} key={name} />;
+	const contacts = contactNames.map((name, i) => {
+		return <Contact name={contactNames[i].name} key={contactNames[i].id} />;
 	});
 	return <div>{contacts}</div>;
 };

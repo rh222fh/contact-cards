@@ -7,17 +7,24 @@ class App extends Component {
 	constructor() {
 		super();
 		this.state = {
-			nameArray   : nameArray,
+			nameArray   : [],
 			searchField : ''
 		};
+	}
+
+	componentDidMount() {
+		fetch('https://overwatch-api.net/api/v1/hero')
+			.then(response => response.json())
+			.then(users => this.setState({ nameArray: users.data }));
 	}
 
 	onSearchChange = event => {
 		this.setState({ searchField: event.target.value });
 	};
+
 	render() {
 		const searchFilter = this.state.nameArray.filter(nameArray => {
-			return nameArray
+			return nameArray.name
 				.toLowerCase()
 				.includes(this.state.searchField.toLowerCase());
 		});
@@ -31,20 +38,5 @@ class App extends Component {
 		);
 	}
 }
-
-const nameArray = [
-	'Ned',
-	'Tyrion',
-	'Sam',
-	'Tormund',
-	'Hodor',
-	'Jamie',
-	'Ceresi',
-	'Jon',
-	'Sansa',
-	'Petyr',
-	'Varys',
-	'Daenerys'
-];
 
 export default App;
